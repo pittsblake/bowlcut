@@ -63,6 +63,15 @@ class StylistProfilePage extends Component {
             <div>
                 <img src={this.state.stylist.image} alt="Profile picture" />
                 <h2>{this.state.stylist.name}</h2>
+                
+                {
+                    this.state.stylist.active ?
+                    <h3>Status: active</h3>
+                    :
+                    <h3>Status: inactive</h3>
+                }
+                
+                <h3>Status: {this.state.stylist.active}</h3>
 
                 {
                     this.state.stylist.active ? 
