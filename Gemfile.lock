@@ -45,6 +45,7 @@ GEM
     crass (1.0.2)
     dotenv (0.7.0)
     erubi (1.7.0)
+    ffaker (2.7.0)
     ffi (1.9.18)
     foreman (0.64.0)
       dotenv (~> 0.7.0)
@@ -128,6 +129,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  ffaker
   foreman
   hirb
   listen (>= 3.0.5, < 3.2)

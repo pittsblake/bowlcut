@@ -43,6 +43,6 @@ class Api::StylistsController < ApplicationController
     private
 
     def stylist_params
-        stylist_params = params.require(:stylist).permit(:name, :email, :password, :rating, :description, :location, :active)
+        stylist_params = params.require(:stylist).permit(:name, :email, :password, :rating, :description, :location, :active, :image)
     end
 end
