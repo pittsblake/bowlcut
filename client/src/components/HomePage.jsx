@@ -12,7 +12,7 @@ const HomePage = () => {
             <h1>BowlCut</h1>
             <Link to='/stylists'>Get a Cut</Link>
             <br />
-            <Link to='#'>Give a Cut</Link>
+            <Link to='/stylist/13'>Give a Cut</Link>
         </div>
     );
 };

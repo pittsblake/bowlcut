@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import HomePage from './components/HomePage'
 import AllActiveStylists from './components/AllActiveStylists'
 import StylistShowPage from './components/StylistShowPage'
+import StylistProfilePage from './components/StylistProfilePage'
 
 class App extends Component {
   render() {
@@ -21,6 +22,11 @@ class App extends Component {
             <Route
               exact path="/stylists/:id"
               component={StylistShowPage}
+            />
+
+            <Route 
+              exact path="/stylist/13"
+              component={StylistProfilePage}
             />
 
           </Switch>
