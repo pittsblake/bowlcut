@@ -4,7 +4,9 @@ import styled from 'styled-components'
 
 class StylistProfilePage extends Component {
     state = {
-        stylist: {}
+        stylist: {
+            active: ''
+        }
     }
 
     componentWillMount = async () => {
@@ -37,13 +39,27 @@ class StylistProfilePage extends Component {
         await this.setState({ stylist: res.data })
     }
 
+    toggleIsActive = () => {
+        const updateStylist = { ...this.state.stylist }
+        updateStylist.active = !this.state.stylist.active
+        this.setState({
+            stylist: updateStylist
+        })
+    }
 
     render() {
         return (
             <div>
                 <img src={this.state.stylist.image} alt="Profile picture" />
                 <h2>{this.state.stylist.name}</h2>
-                <button>Ready to Cut</button>
+
+                {
+                    this.state.stylist.active ? 
+                    <button onClick={this.toggleIsActive}>Stop Making Money</button>
+                    : 
+                    <button onClick={this.toggleIsActive}>Ready to Cut</button>
+
+                }
                 <div>
                     <textarea
                         onSubmit={this.handleSubmit}
