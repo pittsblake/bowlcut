@@ -55,7 +55,7 @@ class StylistProfilePage extends Component {
                     </textarea>
                 </div>
                 <button>Edit</button>
-                <button>Submit</button>
+                <button onClick={this.handleSubmit}>Submit</button>
 
             </div>
         );
