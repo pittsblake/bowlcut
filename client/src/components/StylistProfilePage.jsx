@@ -15,7 +15,6 @@ class StylistProfilePage extends Component {
 
     getStylist = async () => {
         const res = await axios.get(`/api/stylists/13`)
-
         this.setState({ stylist: res.data })
     }
 
@@ -28,14 +27,11 @@ class StylistProfilePage extends Component {
 
     handleSubmit = async (event) => {
         event.preventDefault()
-
         const payload = {
-            description: this.state.stylist.description
+            description: this.state.stylist.description,
         }
-
         const res = await axios.patch(`/api/stylists/13`, payload)
         console.log(res.data)
-
         await this.setState({ stylist: res.data })
     }
 
@@ -47,7 +43,22 @@ class StylistProfilePage extends Component {
         })
     }
 
+    updateActiveStatus = async (event) => {
+        event.preventDefault()
+        const payload = {
+            active: this.state.stylist.active
+        }
+        const res = await axios.patch(`/api/stylists/13`, payload)
+        await this.setState({stylist: res.data})
+    }
+
+    onClick = async (event) => {
+            await this.toggleIsActive();
+            await this.updateActiveStatus(event)
+        }
+
     render() {
+
         return (
             <div>
                 <img src={this.state.stylist.image} alt="Profile picture" />
@@ -55,9 +66,9 @@ class StylistProfilePage extends Component {
 
                 {
                     this.state.stylist.active ? 
-                    <button onClick={this.toggleIsActive}>Stop Making Money</button>
+                    <button onClick={this.onClick}>Stop Making Money</button>
                     : 
-                    <button onClick={this.toggleIsActive}>Ready to Cut</button>
+                    <button onClick={this.onClick}>Ready to Cut</button>
 
                 }
                 <div>
