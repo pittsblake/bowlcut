@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
 class AllActiveStylists extends Component {
 
@@ -32,6 +34,13 @@ class AllActiveStylists extends Component {
     render() {
         return (
             <div>
+                {this.state.stylists.map((stylist) => {
+                    return (
+                        <Link key={stylist.id} to={`stylists/${stylist.id}`}>
+                            <h3>{stylist.name}</h3>
+                        </Link>
+                    )
+                })}
 
             </div>
         );
