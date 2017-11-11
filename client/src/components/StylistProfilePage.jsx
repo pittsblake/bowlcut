@@ -70,9 +70,6 @@ class StylistProfilePage extends Component {
                     :
                     <h3>Status: inactive</h3>
                 }
-                
-                <h3>Status: {this.state.stylist.active}</h3>
-
                 {
                     this.state.stylist.active ? 
                     <button onClick={this.onClick}>Stop Making Money</button>
