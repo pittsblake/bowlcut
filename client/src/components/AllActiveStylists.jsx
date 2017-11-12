@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import StylistProfilePage from '/StylistProfilePage'
+import StylistShowPage from './StylistShowPage'
 
 const AllStylist = styled.div`
     display: flex;
@@ -22,6 +22,7 @@ class AllActiveStylists extends Component {
     async componentWillMount() {
         await this.getAllStylists()
         await this.getAllActiveStylists()
+        await this.getStylist()
     }
 
     getAllStylists = async () => {
@@ -40,9 +41,20 @@ class AllActiveStylists extends Component {
         })
     }
 
-    onClick = (event) => {
-        event.preventDefault();
-        this.setState({ showStylistShowPage: !this.state.showStylistShowPage})
+    getStylist = async () => {
+        try {
+            const { id } = this.props.match.params
+            const res = await axios.get(`/api/stylists/${id}`)
+            this.setState({ stylist: res.data })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    onClick = async (event) => {
+        await event.preventDefault();
+        await this.setState({ showStylistShowPage: !this.state.showStylistShowPage })
+        await this.getStylist()
     }
 
     render() {
@@ -53,16 +65,18 @@ class AllActiveStylists extends Component {
                 <AllStylist>
                     {this.state.stylists.map((stylist) => {
                         return (
+                            <div>
+                                <button key={stylist.id} onClick={this.onClick}>
+                                    {stylist.name}
+                                </button>
 
-                            <Link key={stylist.id} to={`stylists/${stylist.id}`}>
-                                <div>
-                                    <h3>{stylist.name}</h3>
-                                </div>
-                            </Link>
-
+                            </div>
                         )
                     })}
                 </AllStylist>
+                {
+                    this.state.showStylistShowPage ? <StylistShowPage stylist={this.state.stylists} /> : null
+                }
             </div>
         );
     }
