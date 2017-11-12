@@ -4,6 +4,7 @@ import HomePage from './components/HomePage'
 import AllActiveStylists from './components/AllActiveStylists'
 import StylistShowPage from './components/StylistShowPage'
 import StylistProfilePage from './components/StylistProfilePage'
+import UserProfilePage from './components/UserProfilePage'
 
 class App extends Component {
   render() {
@@ -23,10 +24,13 @@ class App extends Component {
               exact path="/stylists/:id"
               component={StylistShowPage}
             />
-
             <Route 
               exact path="/stylist/13"
               component={StylistProfilePage}
+            />
+            <Route
+              exact path="/user/17"
+              component={UserProfilePage}
             />
 
           </Switch>

@@ -2,12 +2,21 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import StylistProfilePage from '/StylistProfilePage'
+
+const AllStylist = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+`
+
 
 class AllActiveStylists extends Component {
 
     state = {
         stylists: [],
-        activeStylists: []
+        activeStylists: [],
+        showStylistShowPage: false
     }
 
     async componentWillMount() {
@@ -31,17 +40,29 @@ class AllActiveStylists extends Component {
         })
     }
 
+    onClick = (event) => {
+        event.preventDefault();
+        this.setState({ showStylistShowPage: !this.state.showStylistShowPage})
+    }
+
     render() {
         return (
             <div>
-                {this.state.stylists.map((stylist) => {
-                    return (
-                        <Link key={stylist.id} to={`stylists/${stylist.id}`}>
-                            <h3>{stylist.name}</h3>
-                        </Link>
-                    )
-                })}
+                <Link to="/user/17"> Profile </Link>
 
+                <AllStylist>
+                    {this.state.stylists.map((stylist) => {
+                        return (
+
+                            <Link key={stylist.id} to={`stylists/${stylist.id}`}>
+                                <div>
+                                    <h3>{stylist.name}</h3>
+                                </div>
+                            </Link>
+
+                        )
+                    })}
+                </AllStylist>
             </div>
         );
     }

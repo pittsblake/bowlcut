@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import { Link } from 'react-router-dom'
 
 class StylistShowPage extends Component {
     state = {
@@ -24,7 +25,7 @@ class StylistShowPage extends Component {
     render() {
         return (
             <div>
-                <button>Book it</button>
+                <a href="#">Book it</a>
                 <h1>{this.state.stylist.name}</h1>
                 <h3>{this.state.stylist.description}</h3>
             </div>
