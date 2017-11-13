@@ -7,7 +7,10 @@ class Api::CommentsController < ApplicationController
     end
     
     def create
+
+        #find the appointment id
         @appointment = Appointment.find(params[:appointment_id])
+        #create a new comment within the appointment
         @comment = @appointment.comments.new(comment_params)
 
         if @comment.save!
