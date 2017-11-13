@@ -27,6 +27,7 @@ const Contents = styled.div`
     margin: 0 100px 0 0
 `
 const A = styled.a`
+
     text-decoration: none;
     color: white
 `

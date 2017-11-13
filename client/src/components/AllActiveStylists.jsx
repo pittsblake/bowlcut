@@ -10,11 +10,11 @@ const AllStylist = styled.div`
     justify-content: space-around;
 `
 
-
 class AllActiveStylists extends Component {
 
     state = {
         stylists: [],
+        stylist: {},
         activeStylists: [],
         showStylistShowPage: false
     }
@@ -22,7 +22,6 @@ class AllActiveStylists extends Component {
     async componentWillMount() {
         await this.getAllStylists()
         await this.getAllActiveStylists()
-        await this.getStylist()
     }
 
     getAllStylists = async () => {
@@ -32,29 +31,25 @@ class AllActiveStylists extends Component {
 
     getAllActiveStylists = () => {
         const stylists = this.state.stylists
-        stylists.map((stylist) => {
-            if (stylist.active === true) {
-                this.setState({
-                    activeStylists: stylist
-                })
-            }
-        })
+        const activeStylists = stylists.filter(stylist => stylist.active)
+        this.setState({activeStylists})
     }
 
-    getStylist = async () => {
+    getStylist = async (id) => {
+        if (this.state.showStylistShowPage) {
+            this.setState({showStylistShowPage: !this.state.showStylistShowPage})
+        }
         try {
-            const { id } = this.props.match.params
-            const res = await axios.get(`/api/stylists/${id}`)
-            this.setState({ stylist: res.data })
+            const stylistId = id
+            console.log(id)
+            const res = await axios.get(`/api/stylists/${stylistId}`)
+            this.setState({ 
+                stylist: res.data,
+                showStylistShowPage: !this.state.showStylistShowPage          
+            })
         } catch (err) {
             console.log(err)
         }
-    }
-
-    onClick = async (event) => {
-        await event.preventDefault();
-        await this.setState({ showStylistShowPage: !this.state.showStylistShowPage })
-        await this.getStylist()
     }
 
     render() {
@@ -63,10 +58,10 @@ class AllActiveStylists extends Component {
                 <Link to="/user/17"> Profile </Link>
 
                 <AllStylist>
-                    {this.state.stylists.map((stylist) => {
+                    {this.state.activeStylists.map((stylist) => {
                         return (
                             <div>
-                                <button key={stylist.id} onClick={this.onClick}>
+                                <button key={stylist.id} onClick={() => this.getStylist(stylist.id)}>
                                     {stylist.name}
                                 </button>
 
@@ -75,7 +70,7 @@ class AllActiveStylists extends Component {
                     })}
                 </AllStylist>
                 {
-                    this.state.showStylistShowPage ? <StylistShowPage stylist={this.state.stylists} /> : null
+                    this.state.showStylistShowPage ? <StylistShowPage stylist={this.state.stylist} /> : null
                 }
             </div>
         );
