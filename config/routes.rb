@@ -16,5 +16,6 @@ Rails.application.routes.draw do
     delete "/stylists/:id", to: "stylists#destroy"
 
     resources :appointments
+    
   end
 end
