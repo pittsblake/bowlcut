@@ -23,7 +23,7 @@ class Api::UsersController < ApplicationController
         #use the 'user_id' to find the user in the database
         #and save it to an instance variable
         @user = User.find_by_id(user_id)
-        render json: @user
+        render json: @user, include: [:appointments]
     end
 
     def update

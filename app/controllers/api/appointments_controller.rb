@@ -1,4 +1,11 @@
 class Api::AppointmentsController < ApplicationController
+
+    def index
+        @appointments = Appointment.all
+
+        render json: @appointments
+    end
+
     def create
         puts 'route hit'
 
@@ -7,6 +14,13 @@ class Api::AppointmentsController < ApplicationController
         if @appointment.save
             render json: @appointment
         end
+    end
+
+    def show
+        appointment_id = params[:id]
+
+        @appointment = Appointment.find_by_id(appointment_id)
+        render json: @appointment, include: [:comments]
     end
 
     private 

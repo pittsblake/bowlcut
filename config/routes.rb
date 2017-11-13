@@ -15,7 +15,9 @@ Rails.application.routes.draw do
     patch "/stylists/:id", to: "stylists#update"
     delete "/stylists/:id", to: "stylists#destroy"
 
-    resources :appointments
+    resources :appointments do
+      resources :comments
+    end
     
   end
 end

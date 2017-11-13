@@ -9,7 +9,7 @@ const StylistShowPage = (props) => {
             user_id: props.user.id,
             stylist_id: props.stylist.id,
             start_time: new Date,
-            end_time: new Date
+            end_time: ''
         }
         console.log(payload)
         try {
