@@ -14,5 +14,7 @@ Rails.application.routes.draw do
     get "/stylists/:id", to: "stylists#show", as: "stylist"
     patch "/stylists/:id", to: "stylists#update"
     delete "/stylists/:id", to: "stylists#destroy"
+
+    resources :appointments
   end
 end
