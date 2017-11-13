@@ -5,17 +5,24 @@ Stylist.destroy_all
 
 users = []
 
-User.create({name: 'Taylor', email: 'taytay@gmail.com', password: 'blahblah'})
-User.create({name: 'Joe', email: 'joejoe@gmail.com', password: 'blahblah'})
-User.create({name: 'Jay', email: 'jayjay@gmail.com', password: 'blahblah'})
+user = User.create!({name: 'Taylor', email: 'taytay@gmail.com', password: 'blahblah', password_confirmation: "blahblah"})
+user = User.create!({name: 'Joe', email: 'joejoe@gmail.com', password: 'blahblah', password_confirmation: "blahblah"})
 
-5.times do
-    users << User.create(
-        name: FFaker::Name.name,
-        email: FFaker::Internet.email,
-        password: "blahblah"
-    )
-end
+# user.skip_confirmation!
+# user.save!
+
+# user = User.create!({name: 'Jay', email: 'jayjay@gmail.com', password: 'blahblah', password_confirmation: "blahblah"})
+
+# user.skip_confirmation!
+# user.save!
+
+# 5.times do
+#     users << User.create(
+#         name: FFaker::Name.name,
+#         email: FFaker::Internet.email,
+#         password: "blahblah"
+#     )
+# end
 
 #Stylists
 
