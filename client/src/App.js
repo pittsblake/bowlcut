@@ -5,6 +5,7 @@ import AllActiveStylists from './components/AllActiveStylists'
 import StylistShowPage from './components/StylistShowPage'
 import StylistProfilePage from './components/StylistProfilePage'
 import UserProfilePage from './components/UserProfilePage'
+import AppointmentPage from './components/AppointmentPage'
 
 class App extends Component {
   render() {
@@ -31,6 +32,11 @@ class App extends Component {
             <Route
               exact path="/user/17"
               component={UserProfilePage}
+            />
+
+            <Route
+              exact path="/appointment"
+              component={AppointmentPage}
             />
 
           </Switch>

@@ -23,7 +23,7 @@ const StylistShowPage = (props) => {
 
     return (
         <div>
-            <button onClick={() => createAppointment()}>Book it</button>
+            <button onClick={() => createAppointment()}><a href="/appointment">Book it</a></button>
             <h1>{props.stylist.name}</h1>
             <h3>{props.stylist.description}</h3>
         </div>
