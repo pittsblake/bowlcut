@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 
 const StylistShowPage = (props) => {
+
+    const createAppointment = async () => {
+        const payload = {
+            
+        }
+    }
+
     return (
         <div>
             <button>Book it</button>
