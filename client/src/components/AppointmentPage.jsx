@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import Comments from './Comments'
+import { Redirect } from 'react-router-dom'
+
 
 class AppointmentPage extends Component {
     state = {
         appointment: {},
         comments:[],
-        comment: {}
+        comment: {},
+        redirectToStylistProfile: false
     }
 
     componentWillMount = async () => {
@@ -57,6 +60,14 @@ class AppointmentPage extends Component {
          })
     }
 
+    deleteAppointment = async (appointment) => {
+        const { id } = this.props.match.params
+        const res = await axios.delete(`/api/appointments/${id}`)
+        this.setState({
+            appointment: res.data
+        })
+    } 
+
     render() {
         return (
             <div>
@@ -67,6 +78,7 @@ class AppointmentPage extends Component {
                     comments={this.state.comments}
                     comment={this.state.comment}
                 />
+                <button>Finish</button>
             </div>
         );
     }
