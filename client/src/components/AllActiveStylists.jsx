@@ -47,6 +47,7 @@ class AllActiveStylists extends Component {
     }
 
     setAppointmentState = (appointment) => {
+        console.log(appointment)
         this.setState({
             appointment: appointment,
             redirectToAppointmentPage: true
@@ -91,7 +92,7 @@ class AllActiveStylists extends Component {
                 </AllStylist>
                 {
                     this.state.showStylistShowPage ? <StylistShowPage
-                        stylist={this.state.stylist}
+                        stylist={this.state.stylist.stylist}
                         user={this.state.user}
                         appointment={this.state.appointment}
                         setAppointmentState={this.setAppointmentState}

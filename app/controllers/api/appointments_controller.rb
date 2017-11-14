@@ -10,8 +10,7 @@ class Api::AppointmentsController < ApplicationController
         puts 'route hit'
 
         @appointment = Appointment.new(appointment_params)
-
-        if @appointment.save
+        if @appointment.save!
             render json: @appointment
         end
     end

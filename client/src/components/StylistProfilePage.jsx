@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import styled from 'styled-components'
+import PendingAppointment from './PendingAppointment'
+import {Redirect} from 'react-router-dom'
 
 class StylistProfilePage extends Component {
     state = {
         stylist: {
-            active: ''
-        }
+            active: '',
+            appointments: []
+        },
+        redirectToAppointmentPage: false
     }
 
     componentWillMount = async () => {
@@ -15,7 +19,9 @@ class StylistProfilePage extends Component {
 
     getStylist = async () => {
         const res = await axios.get(`/api/stylists/6`)
-        this.setState({ stylist: res.data })
+        const stylist = res.data.stylist
+        stylist.appointments = res.data.appointments
+        this.setState({ stylist: stylist })
     }
 
     handleChange = (event) => {
@@ -31,7 +37,6 @@ class StylistProfilePage extends Component {
             description: this.state.stylist.description,
         }
         const res = await axios.patch(`/api/stylists/6`, payload)
-        console.log(res.data)
         await this.setState({ stylist: res.data })
     }
 
@@ -49,32 +54,42 @@ class StylistProfilePage extends Component {
             active: this.state.stylist.active
         }
         const res = await axios.patch(`/api/stylists/6`, payload)
-        await this.setState({stylist: res.data})
+        await this.setState({ stylist: res.data })
     }
 
     onClick = async (event) => {
-            await this.toggleIsActive();
-            await this.updateActiveStatus(event)
-        }
+        await this.toggleIsActive();
+        await this.updateActiveStatus(event)
+    }
+
+    setAppointmentState = (appointment) => {
+        this.setState({
+            redirectToAppointmentPage: true
+        })
+    }
 
     render() {
+
+        // if (this.state.redirectToAppointmentPage){
+        //     return <Redirect to={`/appointment/${this.state.stylist.appointment.id}`} />
+        // }
 
         return (
             <div>
                 <img src={this.state.stylist.image} alt="Profile picture" />
                 <h2>{this.state.stylist.name}</h2>
-                
+
                 {
                     this.state.stylist.active ?
-                    <h3>Status: active</h3>
-                    :
-                    <h3>Status: inactive</h3>
+                        <h3>Status: active</h3>
+                        :
+                        <h3>Status: inactive</h3>
                 }
                 {
-                    this.state.stylist.active ? 
-                    <button onClick={this.onClick}>Stop Making Money</button>
-                    : 
-                    <button onClick={this.onClick}>Ready to Cut</button>
+                    this.state.stylist.active ?
+                        <button onClick={this.onClick}>Stop Making Money</button>
+                        :
+                        <button onClick={this.onClick}>Ready to Cut</button>
 
                 }
                 <div>
@@ -89,6 +104,12 @@ class StylistProfilePage extends Component {
                 </div>
                 <button>Edit</button>
                 <button onClick={this.handleSubmit}>Submit</button>
+
+                <h2>Pending Appointments</h2>
+
+                <PendingAppointment 
+                    stylist={this.state.stylist.appointments}
+                /> 
 
             </div>
         );
