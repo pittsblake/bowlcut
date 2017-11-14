@@ -5,40 +5,68 @@ import Comments from './Comments'
 class AppointmentPage extends Component {
     state = {
         appointment: {},
-        comments: []
+        comments:[],
+        comment: {}
     }
 
     componentWillMount = async () => {
         await this.getAppointment()
+        await this.getComments()
     }
 
     getAppointment = async () => {
-        const res = await axios.get(`/api/users/4`)
-        console.log(res.data.appointments)
-        this.setState({
-            
-        })
+        try {
+            const { id } = this.props.match.params
+            const res = await axios.get(`/api/appointments/${id}`)
+            this.setState({
+                appointment: res.data
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    getComments = async () => {
+        try {
+            const { id } = this.props.match.params
+            const res = await axios.get(`/api/appointments/${id}`)
+            this.setState({
+                comments: res.data.comments
+            })
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     handleChange = (event) => {
-        const attribute = event.target.name 
-        const updateComments = {...this.state.comments}
-        updateComments[attribute] = event.target.value
-        this.setState({ comments: updateComments })
+        const attribute = event.target.name
+        const updateComment = { ...this.state.comment }
+        updateComment[attribute] = event.target.value
+        this.setState({ comment: updateComment })
     }
 
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         event.preventDefault()
+        const { id } = this.props.match.params
         const payload = {
-            description: this.state.comments.description
+            description: this.state.comment.description
         }
+        const res = await axios.post(`/api/appointments/${id}/comments`, payload)
+        this.setState({ 
+            comments: res.data,
+         })
     }
 
     render() {
         return (
             <div>
                 <h1>Appointment Page</h1>
-                <Comments handleChange={this.handleChange}/>
+                <Comments
+                    handleChange={this.handleChange}
+                    handleSubmit={this.handleSubmit}
+                    comments={this.state.comments}
+                    comment={this.state.comment}
+                />
             </div>
         );
     }

@@ -14,7 +14,7 @@ class Api::CommentsController < ApplicationController
         @comment = @appointment.comments.new(comment_params)
 
         if @comment.save!
-            render json: @comment
+            render json: @appointment.comments
         end
     end
 

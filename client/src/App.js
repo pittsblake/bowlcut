@@ -35,7 +35,7 @@ class App extends Component {
             />
 
             <Route
-              exact path="/appointment"
+              exact path="/appointment/:id"
               component={AppointmentPage}
             />
 

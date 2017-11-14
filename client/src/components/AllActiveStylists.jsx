@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 import StylistShowPage from './StylistShowPage'
 
@@ -17,7 +17,9 @@ class AllActiveStylists extends Component {
         stylist: {},
         user: {},
         activeStylists: [],
-        showStylistShowPage: false
+        appointment: {},
+        showStylistShowPage: false,
+        redirectToAppointmentPage: false
     }
 
     async componentWillMount() {
@@ -34,7 +36,7 @@ class AllActiveStylists extends Component {
     getAllActiveStylists = () => {
         const stylists = this.state.stylists
         const activeStylists = stylists.filter(stylist => stylist.active)
-        this.setState({activeStylists})
+        this.setState({ activeStylists })
     }
 
     getUser = async () => {
@@ -44,16 +46,23 @@ class AllActiveStylists extends Component {
         })
     }
 
+    setAppointmentState = (appointment) => {
+        this.setState({
+            appointment: appointment,
+            redirectToAppointmentPage: true
+        })
+    }
+
     getStylist = async (id) => {
         if (this.state.showStylistShowPage) {
-            this.setState({showStylistShowPage: !this.state.showStylistShowPage})
+            this.setState({ showStylistShowPage: !this.state.showStylistShowPage })
         }
         try {
             const stylistId = id
             const res = await axios.get(`/api/stylists/${stylistId}`)
-            this.setState({ 
+            this.setState({
                 stylist: res.data,
-                showStylistShowPage: !this.state.showStylistShowPage          
+                showStylistShowPage: !this.state.showStylistShowPage
             })
         } catch (err) {
             console.log(err)
@@ -61,6 +70,9 @@ class AllActiveStylists extends Component {
     }
 
     render() {
+        if (this.state.redirectToAppointmentPage){
+           return <Redirect to={`/appointment/${this.state.appointment.id}`} />
+        }
         return (
             <div>
                 <Link to="/user/17"> Profile </Link>
@@ -78,7 +90,12 @@ class AllActiveStylists extends Component {
                     })}
                 </AllStylist>
                 {
-                    this.state.showStylistShowPage ? <StylistShowPage stylist={this.state.stylist} user={this.state.user}/> : null
+                    this.state.showStylistShowPage ? <StylistShowPage
+                        stylist={this.state.stylist}
+                        user={this.state.user}
+                        appointment={this.state.appointment}
+                        setAppointmentState={this.setAppointmentState}
+                    /> : null
                 }
             </div>
         );
