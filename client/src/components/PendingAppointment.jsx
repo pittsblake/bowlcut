@@ -7,7 +7,9 @@ const PendingAppointment = (props) => {
             {props.stylist.map((appointment) => {
                 return (
                     <div>
-                        <Link to={`/appointment/${appointment.id}`}> {appointment.start_time} </Link>
+                        {appointment.finish ?
+                            <Link to={`/appointment/${appointment.id}`}> {appointment.start_time} </Link> : null
+                        }
                     </div>
                 )
             })}

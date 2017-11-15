@@ -86,7 +86,8 @@ class AppointmentPage extends Component {
         console.log(res.data)
         // console.log(payload)
         this.setState({
-            appointment: res.data
+            appointment: res.data,
+            redirectToStylistProfile: true
         })
     }
 
@@ -105,6 +106,10 @@ class AppointmentPage extends Component {
     }
 
     render() {
+
+        if(this.state.redirectToStylistProfile) {
+            return <Redirect to={`/stylists`} />
+        }
 
         return (
             <div>
