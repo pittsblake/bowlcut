@@ -5,4 +5,5 @@ class User < ApplicationRecord
         :omniauthable
   include DeviseTokenAuth::Concerns::User
     has_many :appointments
+    has_many :stylists, through: :appointments
 end

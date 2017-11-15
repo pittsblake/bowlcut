@@ -22,8 +22,26 @@ class Api::UsersController < ApplicationController
         user_id = params[:id]
         #use the 'user_id' to find the user in the database
         #and save it to an instance variable
-        @user = User.find_by_id(user_id)
-        render json: @user, include: [:appointments]
+
+        # give me the user, and the info for each appointment 
+
+        @user = User
+            .joins(:appointments => :stylist)
+            .includes(:appointments)
+            .includes(:stylists)
+            .find(user_id)
+
+        user_response = {
+            user: @user,
+            appointments: @user.appointments.map do |appointment|
+                {
+                    start_time: appointment.start_time,
+                    stylist_name: appointment.stylist.name
+                }
+            end
+        }
+
+        render json: user_response
     end
 
     def update
