@@ -5,7 +5,7 @@ const Comments = (props) => {
         <div>
             {props.comments.map((comment) => {
                 return (
-                    <h5>{comment.description}</h5>
+                    <h5 key={comment.id}>{comment.description}</h5>
                 )
             })}
             <textarea 

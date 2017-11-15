@@ -40,7 +40,7 @@ class AllActiveStylists extends Component {
     }
 
     getUser = async () => {
-        const res = await axios.get(`/api/users/4`)
+        const res = await axios.get(`/api/users/9`)
         this.setState({
             user: res.data.user
         })
@@ -76,7 +76,7 @@ class AllActiveStylists extends Component {
         }
         return (
             <div>
-                <Link to="/user/17"> Profile </Link>
+                <Link to="/user/9"> Profile </Link>
 
                 <AllStylist>
                     {this.state.activeStylists.map((stylist) => {

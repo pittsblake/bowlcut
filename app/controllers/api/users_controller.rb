@@ -26,7 +26,7 @@ class Api::UsersController < ApplicationController
         # give me the user, and the info for each appointment 
 
         @user = User
-            .joins(:appointments => :stylist)
+            .left_joins(:appointments => :stylist)
             .includes(:appointments)
             .includes(:stylists)
             .find(user_id)
