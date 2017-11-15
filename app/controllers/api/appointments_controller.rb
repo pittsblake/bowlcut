@@ -22,6 +22,13 @@ class Api::AppointmentsController < ApplicationController
         render json: @appointment, include: [:comments]
     end
 
+    def update
+        appointment_id = params[:id]
+        @appointment = Appointment.find_by_id(appointment_id)
+
+        @appointment.update_attributes(appointment_params)
+        render json: @appointment
+    end
 
 
     private 

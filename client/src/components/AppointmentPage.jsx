@@ -66,17 +66,28 @@ class AppointmentPage extends Component {
         this.setState({ 
             comments: res.data,
          })
+         console.log(res.data)
     }
 
-    deleteAppointment = async (appointment) => {
-        const { id } = this.props.match.params
-        const res = await axios.delete(`/api/appointments/${id}`)
+    // deleteAppointment = async (appointment) => {
+    //     const { id } = this.props.match.params
+    //     const res = await axios.delete(`/api/appointments/${id}`)
+    //     this.setState({
+    //         appointment: res.data
+    //     })
+    // } 
+
+    finishAppointment = () => {
+        const appointment = {...this.state.appointment}
+        appointment.finish = !this.state.appointment.finish
         this.setState({
-            appointment: res.data
+            appointment: appointment
+            
         })
-    } 
+    }
 
     render() {
+
         return (
             <div>
                 <h1>Appointment Page</h1>
@@ -86,7 +97,7 @@ class AppointmentPage extends Component {
                     comments={this.state.comments}
                     comment={this.state.comment}
                 />
-                <button onClick={()=>this.deleteAppointment()}>Finish</button>
+                <button onClick={()=>this.finishAppointment()}>Finish</button>
             </div>
         );
     }
