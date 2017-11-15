@@ -27,7 +27,7 @@ class AppointmentPage extends Component {
             const formattedResponse = {
                 start_time: res.data.start_time,
                 end_time: res.data.end_time,
-                finish: false        
+                finish: res.data.finish    
             }
             this.setState({
                 appointment: formattedResponse
@@ -77,13 +77,31 @@ class AppointmentPage extends Component {
     //     })
     // } 
 
+    updateFinishState = async (event) => {
+        const { id } = this.props.match.params
+        const payload ={
+            finish: this.state.appointment.finish
+        }
+        const res = await axios.patch(`/api/appointments/${id}`, payload)
+        console.log(res.data)
+        // console.log(payload)
+        this.setState({
+            appointment: res.data
+        })
+    }
+
     finishAppointment = () => {
         const appointment = {...this.state.appointment}
         appointment.finish = !this.state.appointment.finish
         this.setState({
-            appointment: appointment
-            
+            appointment: appointment    
         })
+    }
+   
+    onClick = async (event) => {
+        event.preventDefault()
+        await this.finishAppointment();
+        await this.updateFinishState(event)
     }
 
     render() {
@@ -97,7 +115,7 @@ class AppointmentPage extends Component {
                     comments={this.state.comments}
                     comment={this.state.comment}
                 />
-                <button onClick={()=>this.finishAppointment()}>Finish</button>
+                <button onClick={this.onClick}>Finish</button>
             </div>
         );
     }
