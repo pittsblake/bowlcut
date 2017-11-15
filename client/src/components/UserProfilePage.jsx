@@ -33,10 +33,17 @@ class UserProfilePage extends Component {
 
                 {this.state.user.appointments.map((appointment) => {
                     return (
-                        <div>
-                            <h5>{appointment.stylist_name}</h5>
-                            <h5>{appointment.start_time}</h5>
+
+                        <div key={appointment.id}>
+                            {
+                                appointment.finish ?
+                                     null : <div>
+                                        <h5>{appointment.stylist_name}</h5>
+                                        <h5>{appointment.start_time}</h5>
+                                    </div>
+                            }
                         </div>
+
                     )
                 })}
 
