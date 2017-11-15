@@ -8,7 +8,7 @@ const PendingAppointment = (props) => {
                 return (
                     <div>
                         {appointment.finish ?
-                            <Link to={`/appointment/${appointment.id}`}> {appointment.start_time} </Link> : null
+                            null : <Link to={`/appointment/${appointment.id}`}> {appointment.start_time} </Link>
                         }
                     </div>
                 )
