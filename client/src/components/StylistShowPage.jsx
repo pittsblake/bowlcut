@@ -21,9 +21,9 @@ const StylistShowPage = (props) => {
         } catch (err) {
             console.log(err)
         }
-
     }
 
+    
     return (
         <div>
             <button onClick={() => createAppointment()}>

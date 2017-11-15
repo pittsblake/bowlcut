@@ -6,7 +6,9 @@ import { Redirect } from 'react-router-dom'
 
 class AppointmentPage extends Component {
     state = {
-        appointment: {},
+        appointment: {
+            finish: false
+        },
         comments:[],
         comment: {},
         redirectToStylistProfile: false
@@ -21,8 +23,14 @@ class AppointmentPage extends Component {
         try {
             const { id } = this.props.match.params
             const res = await axios.get(`/api/appointments/${id}`)
+            console.log(res.data.start_time)
+            const formattedResponse = {
+                start_time: res.data.start_time,
+                end_time: res.data.end_time,
+                finish: false        
+            }
             this.setState({
-                appointment: res.data
+                appointment: formattedResponse
             })
         } catch (err) {
             console.log(err)
@@ -78,7 +86,7 @@ class AppointmentPage extends Component {
                     comments={this.state.comments}
                     comment={this.state.comment}
                 />
-                <button>Finish</button>
+                <button onClick={()=>this.deleteAppointment()}>Finish</button>
             </div>
         );
     }

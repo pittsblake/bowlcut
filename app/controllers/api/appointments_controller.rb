@@ -22,8 +22,11 @@ class Api::AppointmentsController < ApplicationController
         render json: @appointment, include: [:comments]
     end
 
+
+
     private 
     def appointment_params
-        appointment_params = params.require(:appointment).permit( :start_time, :end_time, :user_id, :stylist_id )
+        appointment_params = params.require(:appointment).permit( :start_time, :end_time, :finish, :user_id, :stylist_id )
     end
+
 end
