@@ -8,8 +8,8 @@ class StylistProfilePage extends Component {
     state = {
         stylist: {
             active: '',
-            appointments: []
         },
+        appointments: [],
         redirectToAppointmentPage: false
     }
 
@@ -20,8 +20,7 @@ class StylistProfilePage extends Component {
     getStylist = async () => {
         const res = await axios.get(`/api/stylists/6`)
         const stylist = res.data.stylist
-        stylist.appointments = res.data.appointments
-        this.setState({ stylist: stylist })
+        this.setState({ stylist: stylist, appointments: res.data.appointments })
     }
 
     handleChange = (event) => {
@@ -51,15 +50,18 @@ class StylistProfilePage extends Component {
     updateActiveStatus = async (event) => {
         event.preventDefault()
         const payload = {
-            active: this.state.stylist.active
+            stylist: {
+                active: !this.state.stylist.active
+            }
         }
         const res = await axios.patch(`/api/stylists/6`, payload)
-        await this.setState({ stylist: res.data })
+        console.log(res.data)
+        await this.setState({ stylist: res.data.stylist, appointments: res.data.appointments })
     }
 
     onClick = async (event) => {
-        await this.toggleIsActive();
-        await this.updateActiveStatus(event)
+        // await this.toggleIsActive();
+        this.updateActiveStatus(event)
     }
 
     setAppointmentState = (appointment) => {
@@ -107,9 +109,9 @@ class StylistProfilePage extends Component {
 
                 <h2>Pending Appointments</h2>
 
-                <PendingAppointment 
-                    stylist={this.state.stylist.appointments}
-                /> 
+             <PendingAppointment 
+                    stylist={this.state.appointments}
+                />
 
             </div>
         );

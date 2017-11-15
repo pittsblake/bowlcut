@@ -42,7 +42,7 @@ class AllActiveStylists extends Component {
     getUser = async () => {
         const res = await axios.get(`/api/users/4`)
         this.setState({
-            user: res.data
+            user: res.data.user
         })
     }
 

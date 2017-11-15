@@ -27,9 +27,13 @@ class Api::StylistsController < ApplicationController
     def update
         stylist_id = params[:id]
         @stylist = Stylist.find_by_id(stylist_id)
+        @appointments= @stylist.appointments
 
         @stylist.update_attributes(stylist_params)
-        render json: @stylist
+        render json: { 
+            stylist: @stylist,
+            appointments: @appointments
+    }
 
     end
 
