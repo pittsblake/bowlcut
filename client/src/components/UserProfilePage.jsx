@@ -15,9 +15,14 @@ class UserProfilePage extends Component {
     }
 
     getUser = async () => {
-        const res = await axios.get(`/api/users/9`)
-        console.log(res.data)
-        this.setState({ user: res.data })
+        try {
+            const { id } = this.props.match.params
+            const res = await axios.get(`/api/users/${id}`)
+            console.log(res.data)
+            this.setState({ user: res.data })
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     render() {
@@ -37,7 +42,7 @@ class UserProfilePage extends Component {
                         <div key={appointment.id}>
                             {
                                 appointment.finish ?
-                                     null : <div>
+                                    null : <div>
                                         <h5>{appointment.stylist_name}</h5>
                                         <h5>{appointment.start_time}</h5>
                                     </div>

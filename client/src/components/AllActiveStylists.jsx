@@ -88,10 +88,15 @@ class AllActiveStylists extends Component {
     }
 
     getUser = async () => {
-        const res = await axios.get(`/api/users/9`)
-        this.setState({
-            user: res.data.user
-        })
+        try {
+            const { id } = this.props.match.params
+            const res = await axios.get(`/api/users/${id}`)
+            this.setState({
+                user: res.data.user
+            })
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     setAppointmentState = (appointment) => {
@@ -125,7 +130,7 @@ class AllActiveStylists extends Component {
         return (
             <BackgroundImage>
                 <NavBar>
-                    <Link to="/user/9"> Profile </Link>
+                    <Link to={`#`}> Profile </Link>
                 </NavBar>
                 <AllStylist>
                     {this.state.activeStylists.map((stylist) => {
