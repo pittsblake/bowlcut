@@ -13,13 +13,25 @@ const NavBar = styled.div`
 `
 
 const BackgroundImage = styled.div`
-    background-image: url("https://i.imgur.com/TiEuMyG.jpg");
     background-repeat:no-repeat;
     background-size:cover;
     background-position:center;
     height: 100vh;
-    width: 100%;
-    opacity: 0.7;
+    width: 100%;    
+    position: relative;
+
+    &:after{
+        content: '';
+        background-image: url("https://i.imgur.com/TiEuMyG.jpg");
+        background-size: cover;
+        position:absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        opacity: 0.7;
+        z-index: -1;
+    }
 `
 
 const AllStylist = styled.div`
@@ -30,7 +42,6 @@ const AllStylist = styled.div`
     background-color: white;
     margin: 150px auto;
     height: 450px;
-    z-index: auto
 `
 const Button = styled.button`
     text-decoration: none;
@@ -40,9 +51,6 @@ const CenterStylistName = styled.div`
     display: flex;
     justify-content: center;
     font-family: 'Josefin Sans', sans-serif
-`
-const StylistContainer = styled.div`
-    
 `
 const Image = styled.img`
     height: 40vh;
@@ -137,7 +145,6 @@ class AllActiveStylists extends Component {
                                 <CenterStylistName>
                                     <h1>{stylist.name}</h1>
                                 </CenterStylistName>
-
                             </div>
                         )
                     })}
