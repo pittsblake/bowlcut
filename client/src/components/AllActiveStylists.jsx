@@ -40,13 +40,24 @@ const AllStylist = styled.div`
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background-color: white;
     margin: 150px auto;
     height: 300px;
+    background-color: rgba(255,255,255, .7);
+    /* &:after {
+        z-index: -1
+    } */
 `
+const ButtonContainer = styled.div`
+    margin: none;
+    border: none;
+`
+
 const Button = styled.button`
     text-decoration: none;
-    border: none
+    padding: 0;
+    border: none;
+    margin: none;
+    background-color: rgba(255, 255, 255, .7)
 `
 const CenterStylistName = styled.div`
     display: flex;
@@ -56,6 +67,9 @@ const CenterStylistName = styled.div`
 const Image = styled.img`
     height: 25vh;
     max-width: 20vw;
+    margin: none;
+    border: none;
+    z-index: 1;
     &:hover {
         height:27vh;
         max-width: 22vw;
@@ -67,15 +81,37 @@ const Image = styled.img`
     }
 `
 
+const ProfileButton = styled.button`
+    text-decoration: none;
+    background-color: #686569; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    opacity: 0.7;
+    &:hover {
+        box-shadow: 2px 4px 5px black; 
+        cursor: grab;
+    }
+    a {
+        text-decoration: none;
+        color: white
+    }
+}
+`
+
 const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)',
-  }
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+    }
 };
 
 
@@ -164,25 +200,25 @@ class AllActiveStylists extends Component {
         return (
             <BackgroundImage>
                 <NavBar>
-                    <Link to="/user/13"> Profile </Link>
+                    <ProfileButton><a href="/user/13"> Profile </a></ProfileButton>
                 </NavBar>
                 <AllStylist>
                     {this.state.activeStylists.map((stylist) => {
                         return (
-                            <div>
+                            <ButtonContainer>
                                 <Button key={stylist.id} onClick={() => this.onClick(stylist.id)}>
                                     <Image src={stylist.image} alt="Stylist Pic" />
                                 </Button>
                                 <CenterStylistName>
                                     <h1>{stylist.name}</h1>
                                 </CenterStylistName>
-                            </div>
+                            </ButtonContainer>
                         )
                     })}
                 </AllStylist>
 
 
-                <Modal 
+                <Modal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}
                     onRequestClose={this.closeModal}
@@ -190,11 +226,11 @@ class AllActiveStylists extends Component {
                     contentLabel="Example Modal" >
                     {
                         this.state.showStylistShowPage ? <StylistShowPage
-                        stylist={this.state.stylist.stylist}
-                        user={this.state.user}
-                        appointment={this.state.appointment}
-                        setAppointmentState={this.setAppointmentState}
-                    /> : null
+                            stylist={this.state.stylist.stylist}
+                            user={this.state.user}
+                            appointment={this.state.appointment}
+                            setAppointmentState={this.setAppointmentState}
+                        /> : null
                     }
                 </Modal>
             </BackgroundImage>
