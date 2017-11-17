@@ -36,6 +36,30 @@ const MessageContainer = styled.div`
         padding: none
     }
 `
+const Button = styled.button`
+    text-decoration: none;
+    background-color: #686569; 
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    opacity: 0.7;
+    margin-top: 6px;
+    margin-right: 6px;
+    margin-bottom: 2px;
+    a {
+        text-decoration: none;
+        color: white
+    }
+    &:hover {
+        box-shadow: 2px 4px 5px grey; 
+        cursor: grab;
+    }
+}
+`
 
 const Comments = (props) => {
     return (
@@ -61,7 +85,7 @@ const Comments = (props) => {
                 </Input>
             </form>
             <br />
-            <button onClick={props.handleSubmit}>Send</button>
+            <Button onClick={props.handleSubmit}>Send</Button>
         </div>
     );
 };

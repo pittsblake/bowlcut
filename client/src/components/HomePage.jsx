@@ -68,7 +68,7 @@ const HomePage = () => {
                 <Logo>bowlcut</Logo>
                 <Links>
                     <Button><A href='/stylists'>Get a Cut</A></Button> 
-                    <Button><A href='/stylist/15'>Give a Cut</A></Button>
+                    <Button><A href='/stylist/20'>Give a Cut</A></Button>
                 </Links>
                 </div>
             </Contents>

@@ -9,13 +9,40 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center
 `
+const ButtonDiv = styled.div`
+    margin: 20px auto
+`
 
+const Button = styled.button`
+    text-decoration: none;
+    background-color: #686569; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    opacity: 0.7;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 2px;
+    a {
+        text-decoration: none;
+        color: white
+    }
+    &:hover {
+        box-shadow: 2px 4px 5px grey; 
+        cursor: grab;
+    }
+}
+`
 class AppointmentPage extends Component {
     state = {
         appointment: {
             finish: false
         },
-        comments:[],
+        comments: [],
         comment: {},
         redirectToStylistProfile: false
     }
@@ -33,7 +60,7 @@ class AppointmentPage extends Component {
             const formattedResponse = {
                 start_time: res.data.start_time,
                 end_time: res.data.end_time,
-                finish: res.data.finish    
+                finish: res.data.finish
             }
             this.setState({
                 appointment: formattedResponse
@@ -69,23 +96,15 @@ class AppointmentPage extends Component {
             description: this.state.comment.description
         }
         const res = await axios.post(`/api/appointments/${id}/comments`, payload)
-        this.setState({ 
+        this.setState({
             comments: res.data,
-         })
-         console.log(res.data)
+        })
+        console.log(res.data)
     }
-
-    // deleteAppointment = async (appointment) => {
-    //     const { id } = this.props.match.params
-    //     const res = await axios.delete(`/api/appointments/${id}`)
-    //     this.setState({
-    //         appointment: res.data
-    //     })
-    // } 
 
     updateFinishState = async (event) => {
         const { id } = this.props.match.params
-        const payload ={
+        const payload = {
             finish: this.state.appointment.finish
         }
         const res = await axios.patch(`/api/appointments/${id}`, payload)
@@ -98,13 +117,13 @@ class AppointmentPage extends Component {
     }
 
     finishAppointment = () => {
-        const appointment = {...this.state.appointment}
+        const appointment = { ...this.state.appointment }
         appointment.finish = !this.state.appointment.finish
         this.setState({
-            appointment: appointment    
+            appointment: appointment
         })
     }
-   
+
     onClick = async (event) => {
         event.preventDefault()
         await this.finishAppointment();
@@ -113,21 +132,23 @@ class AppointmentPage extends Component {
 
     render() {
 
-        if(this.state.redirectToStylistProfile) {
+        if (this.state.redirectToStylistProfile) {
             return <Redirect to={`/stylists`} />
         }
 
         return (
             <Container>
                 <h1>Appointment Page</h1>
-                <button onClick={this.onClick}>Finish</button>
+                <ButtonDiv>
+                    <Button onClick={this.onClick}>Finish</Button>
+                </ButtonDiv>
                 <Comments
                     handleChange={this.handleChange}
                     handleSubmit={this.handleSubmit}
                     comments={this.state.comments}
                     comment={this.state.comment}
                 />
-                
+
             </Container>
         );
     }

@@ -28,11 +28,11 @@ class App extends Component {
                 component={StylistShowPage}
               />
               <Route
-                exact path="/stylist/15"
+                exact path="/stylist/20"
                 component={StylistProfilePage}
               />
               <Route
-                exact path="/user/13"
+                exact path="/user/17"
                 component={UserProfilePage}
               />
 

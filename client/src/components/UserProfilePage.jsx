@@ -5,7 +5,9 @@ import styled from 'styled-components'
 import Moment from 'react-moment';
 
 const BodyOfComponent = styled.div`
-    background-color: lightcyan
+    background-color: lightcyan;
+    height: 100vh;
+
 `
 
 const Image = styled.img`
@@ -18,7 +20,6 @@ const CardContainer = styled.div`
     flex-direction: column;
     align-items: center;
     background-color: lightcyan;
-    
 `
 const Card = styled.div`
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0   6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -79,7 +80,7 @@ class UserProfilePage extends Component {
     }
 
     getUser = async () => {
-        const res = await axios.get(`/api/users/13`)
+        const res = await axios.get(`/api/users/17`)
         console.log(res.data)
         this.setState({ user: res.data })
     }
