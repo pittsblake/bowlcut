@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+
+const Image = styled.img`
+    height: 35vh;
+    width: 25vw
+`
 
 class UserProfilePage extends Component {
     state = {
@@ -27,7 +33,7 @@ class UserProfilePage extends Component {
                 <br />
                 <br />
 
-                <img src={this.state.user.user.image} alt="profile pic" />
+                <Image src={this.state.user.user.image} alt="profile pic" />
                 <h1>{this.state.user.user.name}</h1>
                 <h3>Previous Appointments:</h3>
 

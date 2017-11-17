@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import Comments from './Comments'
 import { Redirect } from 'react-router-dom'
+import styled from 'styled-components'
 
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center
+`
 
 class AppointmentPage extends Component {
     state = {
@@ -112,16 +118,17 @@ class AppointmentPage extends Component {
         }
 
         return (
-            <div>
+            <Container>
                 <h1>Appointment Page</h1>
+                <button onClick={this.onClick}>Finish</button>
                 <Comments
                     handleChange={this.handleChange}
                     handleSubmit={this.handleSubmit}
                     comments={this.state.comments}
                     comment={this.state.comment}
                 />
-                <button onClick={this.onClick}>Finish</button>
-            </div>
+                
+            </Container>
         );
     }
 }
