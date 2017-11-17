@@ -5,6 +5,30 @@ import PendingAppointment from './PendingAppointment'
 import { Redirect } from 'react-router-dom'
 
 
+const CardContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightcyan;
+    
+`
+
+const Card = styled.div`
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0   6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding-top: 5px;
+    padding-bottom: 10px;
+    margin: 10px auto;
+    background-color: white;
+    opacity: .8;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h3 {
+        border-bottom: solid thin
+    }
+`
+
 const Image = styled.img`
   height: 300px;
   width: 300px
@@ -102,46 +126,47 @@ class StylistProfilePage extends Component {
         // }
 
         return (
-            <div>
-                <ImageContainer>
-                    <Image src={this.state.stylist.image} alt="Profile picture" />
-                </ImageContainer>
+            <CardContainer>
+                <Card>
+                    <ImageContainer>
+                        <Image src={this.state.stylist.image} alt="Profile picture" />
+                    </ImageContainer>
 
-                <h2>{this.state.stylist.name}</h2>
+                    <h2>{this.state.stylist.name}</h2>
 
-                {
-                    this.state.stylist.active ?
-                        <h3>Status: active</h3>
-                        :
-                        <h3>Status: inactive</h3>
-                }
-                {
-                    this.state.stylist.active ?
-                        <button onClick={this.onClick}>Stop Making Money</button>
-                        :
-                        <button onClick={this.onClick}>Ready to Cut</button>
+                    {
+                        this.state.stylist.active ?
+                            <h3>Status: active</h3>
+                            :
+                            <h3>Status: inactive</h3>
+                    }
+                    {
+                        this.state.stylist.active ?
+                            <button onClick={this.onClick}>Stop Making Money</button>
+                            :
+                            <button onClick={this.onClick}>Ready to Cut</button>
 
-                }
-                <div>
-                    <TextArea
-                        onSubmit={this.handleSubmit}
-                        onChange={this.handleChange}
-                        name="description"
-                        cols="62"
-                        rows="22"
-                        value={this.state.stylist.description}>
-                    </TextArea>
-                </div>
-                
-                <button onClick={this.handleSubmit}>Submit</button>
+                    }
+                    <div>
+                        <TextArea
+                            onSubmit={this.handleSubmit}
+                            onChange={this.handleChange}
+                            name="description"
+                            cols="62"
+                            rows="12"
+                            value={this.state.stylist.description}>
+                        </TextArea>
+                    </div>
 
-                <h2>Pending Appointments</h2>
+                    <button onClick={this.handleSubmit}>Submit</button>
 
-                <PendingAppointment
-                    stylist={this.state.appointments}
-                />
+                    <h2>Pending Appointments</h2>
 
-            </div>
+                    <PendingAppointment
+                        stylist={this.state.appointments}
+                    />
+                </Card>
+            </CardContainer>
         );
     }
 }
