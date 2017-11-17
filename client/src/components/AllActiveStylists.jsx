@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link, Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 import StylistShowPage from './StylistShowPage'
+import Modal from 'react-modal'
 
 
 const NavBar = styled.div`
@@ -65,6 +66,17 @@ const Image = styled.img`
     }
 `
 
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)',
+  }
+};
+
 
 class AllActiveStylists extends Component {
 
@@ -75,7 +87,20 @@ class AllActiveStylists extends Component {
         activeStylists: [],
         appointment: {},
         showStylistShowPage: false,
-        redirectToAppointmentPage: false
+        redirectToAppointmentPage: false,
+        modalIsOpen: false
+    }
+    openModal = () => {
+        this.setState({ modalIsOpen: true });
+    }
+
+    // afterOpenModal() {
+    //     // references are now sync'd and can be accessed.
+    //     this.subtitle.style.color = '#f00';
+    // }
+
+    closeModal = () => {
+        this.setState({ modalIsOpen: false });
     }
 
     async componentWillMount() {
@@ -126,6 +151,11 @@ class AllActiveStylists extends Component {
         }
     }
 
+    onClick = (id) => {
+        this.getStylist(id)
+        this.openModal()
+    }
+
     render() {
         if (this.state.redirectToAppointmentPage) {
             return <Redirect to={`/appointment/${this.state.appointment.id}`} />
@@ -139,7 +169,7 @@ class AllActiveStylists extends Component {
                     {this.state.activeStylists.map((stylist) => {
                         return (
                             <div>
-                                <Button key={stylist.id} onClick={() => this.getStylist(stylist.id)}>
+                                <Button key={stylist.id} onClick={() => this.onClick(stylist.id)}>
                                     <Image src={stylist.image} alt="Stylist Pic" />
                                 </Button>
                                 <CenterStylistName>
@@ -150,14 +180,22 @@ class AllActiveStylists extends Component {
                     })}
                 </AllStylist>
 
-                {
-                    this.state.showStylistShowPage ? <StylistShowPage
+
+                <Modal 
+                    isOpen={this.state.modalIsOpen}
+                    onAfterOpen={this.afterOpenModal}
+                    onRequestClose={this.closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal" >
+                    {
+                        this.state.showStylistShowPage ? <StylistShowPage
                         stylist={this.state.stylist.stylist}
                         user={this.state.user}
                         appointment={this.state.appointment}
                         setAppointmentState={this.setAppointmentState}
                     /> : null
-                }
+                    }
+                </Modal>
             </BackgroundImage>
         );
     }

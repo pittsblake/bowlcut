@@ -11,14 +11,14 @@ import styled from 'styled-components'
 //   height: 420px;
 //   perspective: 1000px;
 // `
-const Card = styled.div`
-  width: 500px;
-  border: 1px solid gray;
-  box-shadow: 1px 1px 3px #888;
-  min-height: 250px;
-  padding-: 10px;
-  margin: 10px;
-`
+// const Card = styled.div`
+//   width: 500px;
+//   border: 1px solid gray;
+//   box-shadow: 1px 1px 3px #888;
+//   min-height: 250px;
+//   padding-: 10px;
+//   margin: 10px;
+// `
 const MainBox = styled.div`
   font-family: calibri;
   box-sizing: border-box;
@@ -35,7 +35,7 @@ const Picture = styled.img`
 const BioBox = styled.div`
     border: 1px solid black;
     width: 450px;
-    border-radius: 5%;
+    border-radius: 1%;
     padding: 10px
 `
 const CenterItemsOnCard = styled.div`
@@ -44,9 +44,27 @@ const CenterItemsOnCard = styled.div`
     align-items: center
 `
 const ButtonOnRightSideOfCard = styled.div`
-    width: 500px;
+    width: 550px;
     display: flex;
     justify-content: flex-end
+`
+const Button = styled.button`
+    text-decoration: none;
+    background-color: #686569; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    opacity: 0.7;
+    margin-top: 40px;
+    &:hover {
+        box-shadow: 2px 4px 5px grey; 
+        cursor: grab;
+    }
+}
 `
 
 
@@ -73,11 +91,10 @@ const StylistShowPage = (props) => {
 
     return (
         <MainBox>
-            <Card>
-
+            <div>
                 <CenterItemsOnCard>
                     <ButtonOnRightSideOfCard>
-                        <button onClick={() => createAppointment()}> Book it </button>
+                        <Button onClick={() => createAppointment()}> Book it </Button>
                     </ButtonOnRightSideOfCard>
                     <Picture src={props.stylist.image} alt="Profile Picture" />
 
@@ -86,8 +103,7 @@ const StylistShowPage = (props) => {
                         <p>{props.stylist.description}</p>
                     </BioBox>
                 </CenterItemsOnCard>
-
-            </Card>
+            </div>
         </MainBox>
     );
 }

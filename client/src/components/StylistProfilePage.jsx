@@ -2,7 +2,32 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import styled from 'styled-components'
 import PendingAppointment from './PendingAppointment'
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
+
+
+const Image = styled.img`
+  height: 300px;
+  width: 300px
+`
+
+const ImageContainer = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center
+`
+
+const TextArea = styled.textarea`
+    text-decoration: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    &:hover {
+        border: solid thin grey;
+        border-radius: 1%
+    }
+
+`
 
 class StylistProfilePage extends Component {
     state = {
@@ -78,7 +103,10 @@ class StylistProfilePage extends Component {
 
         return (
             <div>
-                <img src={this.state.stylist.image} alt="Profile picture" />
+                <ImageContainer>
+                    <Image src={this.state.stylist.image} alt="Profile picture" />
+                </ImageContainer>
+
                 <h2>{this.state.stylist.name}</h2>
 
                 {
@@ -95,21 +123,21 @@ class StylistProfilePage extends Component {
 
                 }
                 <div>
-                    <textarea
+                    <TextArea
                         onSubmit={this.handleSubmit}
                         onChange={this.handleChange}
                         name="description"
-                        cols="100"
-                        rows="10"
+                        cols="62"
+                        rows="22"
                         value={this.state.stylist.description}>
-                    </textarea>
+                    </TextArea>
                 </div>
-                <button>Edit</button>
+                
                 <button onClick={this.handleSubmit}>Submit</button>
 
                 <h2>Pending Appointments</h2>
 
-             <PendingAppointment 
+                <PendingAppointment
                     stylist={this.state.appointments}
                 />
 
