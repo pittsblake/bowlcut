@@ -2,23 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
+import Moment from 'react-moment';
 
-// const CardContainer = styled.div`
-//   position: relative;
-//   z-index: 1;
-//   margin: 32px auto;
-//   max-width: 720px;
-//   height: 420px;
-//   perspective: 1000px;
-// `
-// const Card = styled.div`
-//   width: 500px;
-//   border: 1px solid gray;
-//   box-shadow: 1px 1px 3px #888;
-//   min-height: 250px;
-//   padding-: 10px;
-//   margin: 10px;
-// `
 const MainBox = styled.div`
   font-family: calibri;
   box-sizing: border-box;

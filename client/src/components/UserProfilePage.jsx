@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import Moment from 'react-moment';
 
 const BodyOfComponent = styled.div`
     background-color: lightcyan
@@ -105,7 +106,7 @@ class UserProfilePage extends Component {
                                     appointment.finish ?
                                         null : 
                                         <AppointmentContainer>
-                                            <h5>On: {appointment.start_time}</h5>
+                                            <h5><Moment fromNow>{appointment.created_at}</Moment> </h5>
                                             <h5>With: {appointment.stylist_name}</h5>
                                         </AppointmentContainer>
                                 }

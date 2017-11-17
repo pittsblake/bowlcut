@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import Moment from 'react-moment';
 
 const PendingAppointment = (props) => {
     return (
@@ -9,7 +10,7 @@ const PendingAppointment = (props) => {
                     <div>
                         {appointment.finish ?
                             null : 
-                            <Link to={`/appointment/${appointment.id}`}> {appointment.start_time} </Link>
+                            <Link to={`/appointment/${appointment.id}`}> <Moment fromNow>{appointment.created_at}</Moment> </Link>
                         }
                     </div>
                 )

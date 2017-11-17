@@ -35,7 +35,7 @@ class Api::UsersController < ApplicationController
             user: @user,
             appointments: @user.appointments.map do |appointment|
                 {
-                    start_time: appointment.start_time,
+                    created_at: appointment.created_at,
                     stylist_name: appointment.stylist.name
                 }
             end
