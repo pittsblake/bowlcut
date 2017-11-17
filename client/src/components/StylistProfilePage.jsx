@@ -43,7 +43,7 @@ class StylistProfilePage extends Component {
     }
 
     getStylist = async () => {
-        const res = await axios.get(`/api/stylists/12`)
+        const res = await axios.get(`/api/stylists/15`)
         const stylist = res.data.stylist
         this.setState({ stylist: stylist, appointments: res.data.appointments })
     }
@@ -60,7 +60,7 @@ class StylistProfilePage extends Component {
         const payload = {
             description: this.state.stylist.description,
         }
-        const res = await axios.patch(`/api/stylists/12`, payload)
+        const res = await axios.patch(`/api/stylists/15`, payload)
         await this.setState({ stylist: res.data })
     }
 
@@ -79,7 +79,7 @@ class StylistProfilePage extends Component {
                 active: !this.state.stylist.active
             }
         }
-        const res = await axios.patch(`/api/stylists/12`, payload)
+        const res = await axios.patch(`/api/stylists/15`, payload)
         console.log(res.data)
         await this.setState({ stylist: res.data.stylist, appointments: res.data.appointments })
     }

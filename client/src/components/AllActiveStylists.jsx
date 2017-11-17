@@ -42,7 +42,7 @@ const AllStylist = styled.div`
     align-items: center;
     background-color: white;
     margin: 150px auto;
-    height: 450px;
+    height: 300px;
 `
 const Button = styled.button`
     text-decoration: none;
@@ -54,10 +54,11 @@ const CenterStylistName = styled.div`
     font-family: 'Josefin Sans', sans-serif
 `
 const Image = styled.img`
-    height: 40vh;
-    max-width: 35vw;
+    height: 25vh;
+    max-width: 20vw;
     &:hover {
-        height: 45vh;
+        height:27vh;
+        max-width: 22vw;
         box-shadow: 2px 4px 5px grey; 
         cursor: grab;
     }
@@ -121,7 +122,7 @@ class AllActiveStylists extends Component {
     }
 
     getUser = async () => {
-        const res = await axios.get(`/api/users/9`)
+        const res = await axios.get(`/api/users/13`)
         this.setState({
             user: res.data.user
         })
@@ -163,7 +164,7 @@ class AllActiveStylists extends Component {
         return (
             <BackgroundImage>
                 <NavBar>
-                    <Link to="/user/9"> Profile </Link>
+                    <Link to="/user/13"> Profile </Link>
                 </NavBar>
                 <AllStylist>
                     {this.state.activeStylists.map((stylist) => {

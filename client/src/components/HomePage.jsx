@@ -50,13 +50,17 @@ const Button = styled.button`
     display: inline-block;
     font-size: 16px;
     opacity: 0.7;
+    &:hover {
+        box-shadow: 2px 4px 5px black; 
+        cursor: grab;
+    }
 }
 `
 
 const HomePage = () => {
     return (
         <Image>
-            <NavBar />
+            
 
             <br />
             <Contents>
@@ -64,7 +68,7 @@ const HomePage = () => {
                 <Logo>bowlcut</Logo>
                 <Links>
                     <Button><A href='/stylists'>Get a Cut</A></Button> 
-                    <Button><A href='/stylist/12'>Give a Cut</A></Button>
+                    <Button><A href='/stylist/15'>Give a Cut</A></Button>
                 </Links>
                 </div>
             </Contents>
