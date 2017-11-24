@@ -80,7 +80,7 @@ class UserProfilePage extends Component {
     }
 
     getUser = async () => {
-        const res = await axios.get(`/api/users/17`)
+        const res = await axios.get(`/api/users/3`)
         console.log(res.data)
         this.setState({ user: res.data })
     }
