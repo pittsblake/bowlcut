@@ -1,5 +1,7 @@
 User.destroy_all
 Stylist.destroy_all
+User.reset_pk_sequence
+Stylist.reset_pk_sequence
 
 #Users
 
