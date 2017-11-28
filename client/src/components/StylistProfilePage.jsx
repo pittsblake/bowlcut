@@ -9,7 +9,6 @@ const NavBar = styled.div`
     display: flex;
     justify-content: flex-end;
     padding: 10px;
-    margin-right: 10px;
     background-color: lightcyan;
 `
 
@@ -41,7 +40,7 @@ const StatusButton = styled.button`
     background-color: #686569; 
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 10px 25px;
     margin-right: 10px;
     text-align: center;
     text-decoration: none;
