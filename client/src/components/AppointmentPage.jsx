@@ -4,6 +4,36 @@ import Comments from './Comments'
 import { Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 
+const NavBar = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    margin-right: 10px
+`
+
+const ProfileButton = styled.button`
+text-decoration: none;
+background-color: #686569; 
+border: none;
+color: white;
+margin-right: 10px;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+opacity: 0.7;
+&:hover {
+    box-shadow: 2px 4px 5px black; 
+    cursor: grab;
+}
+a {
+    text-decoration: none;
+    color: white
+}
+}
+`
+
 const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -15,7 +45,7 @@ const ButtonDiv = styled.div`
 
 const Button = styled.button`
     text-decoration: none;
-    background-color: #686569; 
+    background-color: green; 
     border: none;
     color: white;
     padding: 15px 32px;
@@ -137,6 +167,11 @@ class AppointmentPage extends Component {
         }
 
         return (
+            <div>
+            <NavBar>
+                <ProfileButton><a href="/user/1"> User Profile </a></ProfileButton>
+                <ProfileButton><a href="/stylist/1"> Stylist Profile </a></ProfileButton>
+            </NavBar>
             <Container>
                 <h1>Appointment Page</h1>
                 <ButtonDiv>
@@ -150,6 +185,7 @@ class AppointmentPage extends Component {
                 />
 
             </Container>
+            </div>
         );
     }
 }

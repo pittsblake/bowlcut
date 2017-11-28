@@ -86,6 +86,7 @@ const ProfileButton = styled.button`
     background-color: #686569; 
     border: none;
     color: white;
+    margin-right: 10px;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -200,7 +201,8 @@ class AllActiveStylists extends Component {
         return (
             <BackgroundImage>
                 <NavBar>
-                    <ProfileButton><a href="/user/1"> Profile </a></ProfileButton>
+                    <ProfileButton><a href="/user/1"> User Profile </a></ProfileButton>
+                    <ProfileButton><a href="/stylist/1"> Stylist Profile </a></ProfileButton>
                 </NavBar>
                 <AllStylist>
                     {this.state.activeStylists.map((stylist) => {

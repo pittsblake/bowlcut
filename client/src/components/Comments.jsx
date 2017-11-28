@@ -38,7 +38,7 @@ const MessageContainer = styled.div`
 `
 const Button = styled.button`
     text-decoration: none;
-    background-color: #686569; 
+    background-color: blue; 
     border: none;
     color: white;
     padding: 10px 25px;

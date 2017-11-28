@@ -89,32 +89,35 @@ class UserProfilePage extends Component {
         return (
             <BodyOfComponent>
                 <ButtonDiv>
-                <Button> <a href="/stylists"> Stylists </a> </Button>
+                    <Button>
+                        <a href="/stylists"> All Stylists </a> </Button>
+                    <Button>
+                        <a href="/stylist/1"> Stylist Profile </a> </Button>
                 </ButtonDiv>
                 <br />
                 <br />
                 <CardContainer>
                     <Card>
-                    <Image src={this.state.user.user.image} alt="profile pic" />
-                    <h1>{this.state.user.user.name}</h1>
-                    <h3>Previous Appointments</h3>
+                        <Image src={this.state.user.user.image} alt="profile pic" />
+                        <h1>{this.state.user.user.name}</h1>
+                        <h3>Previous Appointments</h3>
 
-                    {this.state.user.appointments.map((appointment) => {
-                        return (
+                        {this.state.user.appointments.map((appointment) => {
+                            return (
 
-                            <div key={appointment.id}>
-                                {
-                                    appointment.finish ?
-                                        null : 
-                                        <AppointmentContainer>
-                                            <h5><Moment fromNow>{appointment.created_at}</Moment> </h5>
-                                            <h5>With: {appointment.stylist_name}</h5>
-                                        </AppointmentContainer>
-                                }
-                            </div>
+                                <div key={appointment.id}>
+                                    {
+                                        appointment.finish ?
+                                            null :
+                                            <AppointmentContainer>
+                                                <h5><Moment fromNow>{appointment.created_at}</Moment> </h5>
+                                                <h5>With: {appointment.stylist_name}</h5>
+                                            </AppointmentContainer>
+                                    }
+                                </div>
 
-                        )
-                    })}
+                            )
+                        })}
                     </Card>
                 </CardContainer>
             </BodyOfComponent>
