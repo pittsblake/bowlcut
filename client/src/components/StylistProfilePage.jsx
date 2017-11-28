@@ -36,6 +36,27 @@ const StylistsButton = styled.button`
     }
 `
 
+const StatusButton = styled.button`
+    text-decoration: none;
+    background-color: #686569; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    margin-right: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    opacity: 0.7;
+    &:hover {
+        box-shadow: 2px 4px 5px black; 
+        cursor: grab;
+    }
+    &:active {
+        cursor: grabbing;
+    }
+`
+
 const CardContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -48,7 +69,7 @@ const CardContainer = styled.div`
 const Card = styled.div`
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0   6px 20px 0 rgba(0, 0, 0, 0.19);
     padding-top: 5px;
-    padding-bottom: 10px;
+    padding-bottom: 80px;
     margin: 10px auto;
     background-color: white;
     opacity: .8;
@@ -180,9 +201,9 @@ class StylistProfilePage extends Component {
                         }
                         {
                             this.state.stylist.active ?
-                                <button onClick={this.onClick}>Stop Making Money</button>
+                                <StatusButton onClick={this.onClick}>Stop Cutting</StatusButton>
                                 :
-                                <button onClick={this.onClick}>Ready to Cut</button>
+                                <StatusButton onClick={this.onClick}>Ready to Cut</StatusButton>
 
                         }
                         <div>
