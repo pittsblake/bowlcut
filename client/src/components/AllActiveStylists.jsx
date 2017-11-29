@@ -43,9 +43,10 @@ const AllStylist = styled.div`
     margin: 150px auto;
     height: 300px;
     background-color: rgba(255,255,255, .7);
-    /* &:after {
-        z-index: -1
-    } */
+   
+   @media only screen and (min-width: 1900px){
+       height: 350px
+   }
 `
 const ButtonContainer = styled.div`
     margin: none;
