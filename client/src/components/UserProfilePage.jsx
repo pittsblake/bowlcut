@@ -112,7 +112,7 @@ class UserProfilePage extends Component {
                                             <AppointmentContainer>
                                                 <h5><Moment fromNow>{appointment.created_at}</Moment> </h5>
                                                 <h5>With: {appointment.stylist_name}</h5>
-                                            </AppointmentContainer>
+                                            </AppointmentContainer> 
                                     }
                                 </div>
 

@@ -2,7 +2,7 @@
 
 #Project Description
 
-This a hair cut app where users can log in and see stylists in their area that are currently available to give a haircut. Once the User requests an appointment from a stylist then the stylist will get a notification to let them know they have a hair cut request and will then drive to the user's location and give a haircut. 
+This a hair cut app where customers can log in and see stylists in their area that are currently available to give a haircut. It's meant to be like an Uber but for haircuts. Once the customer requests an appointment from a stylist, the stylist will get a notification to let them know they have a hair cut request. The stylist can click on the notification and go to a messaging page where the stylist and customer can communicate. Once the haircut is finished then that appointment is logged on the customers profile, where they can see a list of all the appointments they have had and who gave them their haircut. 
 
 # link to app
 https://pacific-stream-54918.herokuapp.com/
